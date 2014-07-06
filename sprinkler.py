@@ -10,10 +10,15 @@ class Bot():
 		for switch in self.all():
 			GPIO.setup(switch, GPIO.OUT)
 
+	def turnOff(self):
+		for switch in self.all():
+			GPIO.output(switch, 0)
+
 	def turnOn(self, n):
-		GPIO.cleanup()
-		GPIO.setup(n, GPIO.OUT)
+		self.turnOff()
 		GPIO.output(n, 1)
 
-	def turnOff(self):
+	def cleanup(self):
 		GPIO.cleanup()
+
+	
