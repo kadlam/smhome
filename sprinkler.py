@@ -10,6 +10,7 @@ class Bot():
 		self.GPIO.setup(13, self.GPIO.OUT)
 
 	def turnOn(self, n):
+		self.GPIO.cleanup()
 		self.GPIO.output(n, 1)
 
 	def turnOff(self, n):
