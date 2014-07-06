@@ -13,8 +13,8 @@ class Bot():
 		self.GPIO = GPIO
 
 	def turnOn(self, n):
-		GPIO.cleanup()
-		GPIO.output(n, 1)
+		self.GPIO.cleanup()
+		self.GPIO.output(n, 1)
 
 	def off(self):
-		GPIO.cleanup()
+		self.GPIO.cleanup()
