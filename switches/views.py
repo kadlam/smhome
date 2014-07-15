@@ -4,21 +4,21 @@ from django.http import HttpResponse
 from django.views.generic import View
 from switches.models import Switch
 
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-	class GPIO():
-		def setmode(self, mode):
-			pass
-		def setup(self, switch, type):
-			pass
-		def output(self, switch, value):
-			pass
-		def cleanup(self):
-			pass
-	GPIO = GPIO()
-	GPIO.BOARD = 0
-	GPIO.OUT = 0
+# try:
+import RPi.GPIO as GPIO
+# except ImportError:
+# 	class GPIO():
+# 		def setmode(self, mode):
+# 			pass
+# 		def setup(self, switch, type):
+# 			pass
+# 		def output(self, switch, value):
+# 			pass
+# 		def cleanup(self):
+# 			pass
+# 	GPIO = GPIO()
+# 	GPIO.BOARD = 0
+# 	GPIO.OUT = 0
 
 
 class Bot():
@@ -44,11 +44,8 @@ class Bot():
 
 bot = Bot()
 
-class Index(View):
-    def get(self, request):
-        switches = Switch.objects.all()
-        result = '<br> - '.join([switch.__str__() for switch in switches])
-        return HttpResponse(result)  
+def index(request):
+    return HttpResponse("You're looking at Sprinklers")
 
 def detail(request, switch_id):
     return HttpResponse("You're looking at Sprinkler %s." % switch_id)
