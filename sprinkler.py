@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 class Bot():
 
 	def all(self):
-		return [11,13,15]
+		return [11,13,15,19,21,23]
 
 	def __init__(self):
 		GPIO.setmode(GPIO.BOARD)
@@ -20,5 +20,4 @@ class Bot():
 
 	def cleanup(self):
 		GPIO.cleanup()
-
 	
