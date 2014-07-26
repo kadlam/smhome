@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from django.views.generic import View
 from switches.models import Switch
 
-# try:
-import RPi.GPIO as GPIO
-# except ImportError:
+#try:
+import RPi.GPIO as GPIO    ##the one line that wasn't commented out
+#except ImportError:
 # 	class GPIO():
 # 		def setmode(self, mode):
 # 			pass
@@ -20,11 +20,10 @@ import RPi.GPIO as GPIO
 # 	GPIO.BOARD = 0
 # 	GPIO.OUT = 0
 
-
 class Bot():
 
 	def all(self):
-		return [11,13,15]
+		return [11,13,15,19,21,23]
 
 	def __init__(self):
 		GPIO.setmode(GPIO.BOARD)
@@ -51,5 +50,6 @@ def detail(request, switch_id):
     return HttpResponse("You're looking at Sprinkler %s." % switch_id)
 
 def active(request, switch_id):
+    switch_id = int(switch_id)
     bot.turnOn(switch_id)
     return HttpResponse("Sprinkler %s is now active." % switch_id)
