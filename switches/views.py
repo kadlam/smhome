@@ -58,7 +58,6 @@ def detail(request, switch_id):
 
 def active(request, switch_id):
     switch_id = int(switch_id)
-    pinId = switch_id + 10
+    pinId = pins[(switch_id-1)]
     bot.turnOn(pinId)
-#    bot.turnOn(switch_id)
     return HttpResponse("Sprinkler %s is now active." % switch_id)
