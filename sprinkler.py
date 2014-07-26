@@ -21,3 +21,4 @@ class Bot():
 	def cleanup(self):
 		GPIO.cleanup()
 	
+#created by eadlam June/July 2014
