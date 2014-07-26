@@ -42,6 +42,7 @@ class Bot():
 		GPIO.cleanup()
 
 bot = Bot()
+pins = [11,13,15,19,21,23]
 
 def index(request):
     return HttpResponse("You're looking at Sprinklers")
@@ -49,7 +50,7 @@ def index(request):
 def detail(request, switch_id):
     switch_id = int(switch_id)
     if switch_id < 7:
-        pinId = switch_id + 10
+        pinId = pins[(switch_id-1)]
         bot.turnOn(pinId)        
         return HttpResponse("You're looking at Sprinkler %s." % switch_id)        
     else:
