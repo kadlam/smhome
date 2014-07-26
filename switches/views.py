@@ -47,9 +47,17 @@ def index(request):
     return HttpResponse("You're looking at Sprinklers")
 
 def detail(request, switch_id):
-    return HttpResponse("You're looking at Sprinkler %s." % switch_id)
+    switch_id = int(switch_id)
+    if switch_id < 7:
+        pinId = switch_id + 10
+        bot.turnOn(pinId)        
+        return HttpResponse("You're looking at Sprinkler %s." % switch_id)        
+    else:
+        return HttpResponse("You've entered an invalid number.")
 
 def active(request, switch_id):
     switch_id = int(switch_id)
-    bot.turnOn(switch_id)
+    pinId = switch_id + 10
+    bot.turnOn(pinId)
+#    bot.turnOn(switch_id)
     return HttpResponse("Sprinkler %s is now active." % switch_id)
