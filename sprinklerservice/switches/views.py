@@ -49,11 +49,14 @@ def index(request):
 
 def detail(request, switch_id):
     switch_id = int(switch_id)
-    if switch_id < 7:
+    if switch_id > 0 and switch_id < 7:
+#        sprinkler = Switch.objects.get(id=switch_id)
         pinId = pins[(switch_id-1)]
+#        bot.turnOn(sprinkler.pinId)
         bot.turnOn(pinId)        
         return HttpResponse("You're looking at Sprinkler %s." % switch_id)        
     else:
+        bot.turnOff()
         return HttpResponse("You've entered an invalid number.")
 
 def active(request, switch_id):
