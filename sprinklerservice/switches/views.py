@@ -42,7 +42,7 @@ class Bot():
 		GPIO.cleanup()
 
 bot = Bot()
-pins = [11,13,15,19,21,23]
+#pins = [11,13,15,19,21,23]
 
 def index(request):
     return HttpResponse("You're looking at Sprinklers")
@@ -50,10 +50,10 @@ def index(request):
 def detail(request, switch_id):
     switch_id = int(switch_id)
     if switch_id > 0 and switch_id < 7:
-#        sprinkler = Switch.objects.get(id=switch_id)
-        pinId = pins[(switch_id-1)]
-#        bot.turnOn(sprinkler.pinId)
-        bot.turnOn(pinId)        
+        sprinkler = Switch.objects.get(id=switch_id)
+#        pinId = pins[(switch_id-1)]
+        bot.turnOn(int(sprinkler.pinId))
+#        bot.turnOn(pinId)        
         return HttpResponse("You're looking at Sprinkler %s." % switch_id)        
     else:
         bot.turnOff()
@@ -61,6 +61,7 @@ def detail(request, switch_id):
 
 def active(request, switch_id):
     switch_id = int(switch_id)
-    pinId = pins[(switch_id-1)]
-    bot.turnOn(pinId)
-    return HttpResponse("Sprinkler %s is now active." % switch_id)
+    if switch_id > 0 and switch_id < 7:
+        sprinkler = Switch.objects.get(id=switch_id)
+        bot.turnOn(int(sprinkler.pinId))
+        return HttpResponse("Sprinkler %s is now active." % switch_id)
