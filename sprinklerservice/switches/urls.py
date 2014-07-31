@@ -7,8 +7,10 @@ urlpatterns = [
     
     # ex: /switches/5/
     url(r'^(?P<switch_id>[0-9]+)/$', views.detail, name='detail'),
+#    url(r'^(?P<sprinkId>[0-9]+)/$', views.detail, name='detail'),
     # ex: /switches/active/5/
     url(r'^active/(?P<switch_id>[0-9]+)/$', views.active, name='active'),
+#    url(r'^active/(?P<sprinkId>[0-9]+)/$', views.active, name='active'),
     url(r'^$', views.index, name='index')
 
 ]
